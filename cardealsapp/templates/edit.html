@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+            <div class="container">
+                <div class="row">
+                <div class="col">
+                    <h1>Put Car Up For Sale</h1>           
+                </div>
+                <div class="col" style="text-align: right;">
+                    <a href="/dashboard" style="display:inline-block;margin-right:10px;">Dashboard</a>
+                    <a href="/logout" class="btn btn-info">Logout</a>            
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+
+    <form action="/update/car" method="post" class="col-4 p-4" style="margin-left: 20%;">
+        {% with messages = get_flashed_messages(category_filter=['car']) %}    
+            {% if messages %}                            
+                {% for message in messages %}           
+                    <p>{{message}}</p>                  
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="form-group">
+            <input type="hidden" name="id" value={{car.id}}>
+            <label for="price">Price:</label>
+            <input type="number" name="price" class="form-control" value={{car.price}}>
+        </div>
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <input type="text" name="model" class="form-control" value={{car.model}}>
+        </div>
+        <div class="form-group">
+            <label for="make">Make:</label>
+            <input type="text" name="make" class="form-control" value={{car.make}}>
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" name="year" class="form-control" value={{car.year}}>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" name="description" class="form-control" value={{car.description}}>
+        </div>
+        <input type="submit" value="Update" class="btn btn-success">
+    </form>
+
+</body>
+</html>

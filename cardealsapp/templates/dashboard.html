@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+            <div class="container">
+                <div class="row">
+                <div class="col-8">
+                    <h1>Welcome to Car Dealz, {{user.first_name}}!!!</h1>         
+                </div>
+                <div class="col-4" style="text-align: right;">
+                    <a href="/logout" class="btn btn-info">Logout</a>            
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+
+    <div class="col-8 mx-auto">
+        <h1>Cars for Sale</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Seller</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{car.model}}</td>
+                        <td>{{car.year}}</td>
+                        <td>{{car.seller_id.first_name}} {{car.seller_id.last_name}}</td>
+                        <td>
+                            {% if car.buyer_id: %}
+                            <p>SOLD</p>
+                            {% elif car.seller_id.id == session.user_id %}
+                            <a href="/edit/{{car.id}}">Edit</a>
+                            <a href="/destroy/band/{{car.id}}">Delete</a>
+                            {% else %}
+                                <a href="/show/{{car.id}}">view</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/new/car" class="btn btn-info" style="margin-left: 70%;">Add a Car</a>  
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <div class="container">
+            <div class="row">
+            <div class="col">
+            </div>
+            <div class="col" style="text-align: right;">
+                <a href="/dashboard" style="display:inline-block;margin-right:10px;">Dashboard</a>
+                <a href="/logout" class="btn btn-info">Logout</a>            
+            </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <form action="/purchase" method="POST">
+        <p>${{car.price}}</p>
+        <p>Model: {{car.model}}</p>
+        <p>Make: {{car.make}}</p>
+        <p>Year: {{car.year}}</p>
+        <p>Description:{{car.description}}</p>
+        <p>Seller:{{car.seller_id.first_name}} {{car.seller_id.last_name}}</p>
+        <input type="hidden" name="id" value="{{car.id}}"> 
+        <input type="submit" value="Purchase" class="btn btn-success">
+    </form>
+</body>
+</html>
